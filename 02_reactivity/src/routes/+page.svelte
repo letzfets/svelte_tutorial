@@ -1,2 +1,22 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	let count = 0;
+    $: doubled = count * 2;
+    $: {
+        console.log('the count is', count);
+        alert('I SAID THE COUNT IS ' + count)
+    }
+    $: if(count > 10) {
+        alert('count is dangerously high')
+        count = 9
+    }
+
+	function incrementCount() {
+		// event handler code goes here
+        count += 1
+	}
+</script>
+
+<button on:click={incrementCount}>
+	Clicked {count} {count === 1 ? 'time' : 'times'}
+</button>
+<p>{count} doubled is {doubled}</p>
